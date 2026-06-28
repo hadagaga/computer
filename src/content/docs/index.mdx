@@ -3,30 +3,33 @@ title: 计算机体系视频百科
 description: 用视频、学习路径和知识关联理解计算机体系。
 template: splash
 hero:
-  tagline: 沿着真实问题学习，在关键节点深入，并从关联网络继续探索。
+  tagline: 把协议、系统机制与安全问题放回同一张知识图，在路径中理解它们如何协作。
   actions:
-    - text: 从 TCP 路径开始
-      link: /paths/tcp-connection/
-      icon: right-arrow
-    - text: 浏览节点库
+    - text: 打开节点知识图
       link: /nodes/
+      icon: right-arrow
+    - text: 沿 TCP 路径学习
+      link: /paths/tcp-connection/
       icon: open-book
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## 三种阅读方式
+## 从图谱进入知识
 
 <CardGrid stagger>
-	<Card title="沿路径学习" icon="seti:tree">
-		从一次真实过程出发，按主干理解系统如何协作，再进入机制与安全分支。
+	<Card title="节点知识图" icon="random">
+		浏览协议、机制、接口、工具和安全问题之间的直接关系，点击节点查看一跳邻居。
+		[进入节点图 →](/nodes/)
 	</Card>
-	<Card title="按节点沉淀" icon="document">
-		每个节点独立记录定义、领域、视频进度、关联节点及其参与的学习路径。
+	<Card title="路径流程图" icon="seti:tree">
+		沿一次 TCP 连接的主线前进，再从关键节点进入可靠性、生命周期与安全分支。
+		[查看 TCP 路径 →](/paths/tcp-connection/)
 	</Card>
-	<Card title="从关系探索" icon="random">
-		以一个概念为中心查看一跳关系，在协议、接口、机制与安全问题之间跳转。
+	<Card title="节点详情页" icon="document">
+		每个核心节点沉淀定义、视频进度、直接关系和它在学习路径中的职责。
+		[阅读 TCP 节点 →](/nodes/tcp/)
 	</Card>
 </CardGrid>
 
@@ -37,9 +40,9 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		从应用程序调用 Socket 开始，沿着 TCP、IP 和网络接口理解一次连接。
 		[进入学习路径 →](/paths/tcp-connection/)
 	</Card>
-	<Card title="TCP 周边知识网" icon="puzzle">
-		查看 TCP 与 IP、Socket、HTTP、可靠传输机制及 SYN Flood 的直接关系。
-		[探索一跳关系 →](/graph/tcp/)
+	<Card title="全局知识网" icon="puzzle">
+		从完整关系网络观察 TCP 与协议栈、可靠传输机制及安全问题的连接。
+		[探索全局关系 →](/graph/)
 	</Card>
 </CardGrid>
 

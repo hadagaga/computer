@@ -1,0 +1,16 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import KnowledgeGraph from '../../components/graph/KnowledgeGraph';
+import nodes from '../../data/nodes.json';
+import edges from '../../data/edges.json';
+---
+
+<StarlightPage frontmatter={{ title: '全局知识网', description: '从完整图谱观察计算机体系概念之间的连接。' }}>
+	<div class="graph-page">
+		<header class="graph-page-header">
+			<div class="graph-kicker">GLOBAL VIEW · {edges.length} RELATIONS</div>
+			<p>从协议栈主线向机制、工具与安全问题展开。当前内容以 TCP 主题为第一阶段，后续数据会沿相同模型继续扩展。</p>
+		</header>
+		<KnowledgeGraph nodes={nodes} edges={edges} initialNode="tcp" client:only="react" />
+	</div>
+</StarlightPage>

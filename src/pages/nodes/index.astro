@@ -1,0 +1,22 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import KnowledgeGraph from '../../components/graph/KnowledgeGraph';
+import nodes from '../../data/nodes.json';
+import edges from '../../data/edges.json';
+---
+
+<StarlightPage frontmatter={{ title: '节点知识图', description: '在可交互关系图中浏览计算机体系知识节点。' }}>
+	<div class="graph-page">
+		<header class="graph-page-header">
+			<div class="graph-kicker">KNOWLEDGE GRAPH · {nodes.length} NODES</div>
+			<p>点击任意节点，只保留它与一跳邻居的视觉焦点；从预览卡进入已有的节点详情页。</p>
+		</header>
+		<div class="graph-legend" aria-label="节点领域图例">
+			<span><i class="legend-dot legend-dot--network"></i>计算机网络</span>
+			<span><i class="legend-dot legend-dot--system"></i>操作系统</span>
+			<span><i class="legend-dot legend-dot--application"></i>应用</span>
+			<span><i class="legend-dot legend-dot--security"></i>网络安全</span>
+		</div>
+		<KnowledgeGraph nodes={nodes} edges={edges} client:only="react" />
+	</div>
+</StarlightPage>

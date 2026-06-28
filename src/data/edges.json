@@ -1,12 +1,21 @@
 [
+  { "id": "application-socket", "source": "application", "target": "socket", "relation": "uses", "label": "调用", "description": "应用程序通过 Socket API 表达网络通信需求。" },
+  { "id": "socket-system-call", "source": "socket", "target": "system-call", "relation": "implemented_by", "label": "进入内核", "description": "Socket 操作通过系统调用进入内核网络栈。" },
+  { "id": "system-call-tcp", "source": "system-call", "target": "tcp", "relation": "invokes", "label": "调用协议栈", "description": "内核根据套接字配置执行 TCP 协议逻辑。" },
   { "id": "tcp-ip", "source": "tcp", "target": "ip", "relation": "depends_on", "label": "依赖", "description": "TCP 通常依赖 IP 将报文发送到目标主机。" },
-  { "id": "socket-tcp", "source": "socket", "target": "tcp", "relation": "uses", "label": "使用", "description": "应用程序可以通过 Socket API 使用 TCP 通信。" },
+  { "id": "ip-network-card", "source": "ip", "target": "network-card", "relation": "transmits_via", "label": "交付", "description": "IP 数据报经过链路层处理后由网卡发出。" },
+  { "id": "network-card-server", "source": "network-card", "target": "server", "relation": "reaches", "label": "到达", "description": "数据经过网络最终到达监听连接的服务端。" },
+  { "id": "tcp-udp", "source": "tcp", "target": "udp", "relation": "contrasts_with", "label": "对比", "description": "TCP 与 UDP 提供不同的传输语义和开销权衡。" },
+  { "id": "tcp-port", "source": "tcp", "target": "port", "relation": "identifies_with", "label": "使用端口", "description": "TCP 使用端口区分主机上的通信端点。" },
   { "id": "http-tcp", "source": "http", "target": "tcp", "relation": "runs_on", "label": "运行在", "description": "HTTP/1.1 和 HTTP/2 通常运行在 TCP 之上。" },
+  { "id": "https-http", "source": "https", "target": "http", "relation": "protects", "label": "安全传输", "description": "HTTPS 为 HTTP 通信加入传输安全保护。" },
+  { "id": "https-tls", "source": "https", "target": "tls", "relation": "uses", "label": "使用", "description": "HTTPS 使用 TLS 建立受保护的传输通道。" },
   { "id": "tcp-handshake", "source": "tcp", "target": "three-way-handshake", "relation": "establishes_with", "label": "建立连接", "description": "TCP 通常通过三次握手建立连接。" },
   { "id": "tcp-termination", "source": "tcp", "target": "four-way-termination", "relation": "closes_with", "label": "关闭连接", "description": "TCP 的双向连接通常通过四次挥手分别关闭。" },
   { "id": "tcp-retransmission", "source": "tcp", "target": "retransmission", "relation": "provides", "label": "可靠性机制", "description": "重传帮助 TCP 从丢包中恢复。" },
   { "id": "tcp-window", "source": "tcp", "target": "sliding-window", "relation": "provides", "label": "流量控制", "description": "滑动窗口协调发送方与接收方的数据处理能力。" },
   { "id": "tcp-congestion", "source": "tcp", "target": "congestion-control", "relation": "provides", "label": "拥塞控制", "description": "拥塞控制让 TCP 根据网络状态调整发送速率。" },
-  { "id": "syn-flood-tcp", "source": "syn-flood", "target": "tcp", "relation": "exploits", "label": "利用机制", "description": "SYN Flood 利用 TCP 连接建立阶段占用服务端资源。" },
+  { "id": "syn-flood-handshake", "source": "syn-flood", "target": "three-way-handshake", "relation": "exploits", "label": "利用机制", "description": "SYN Flood 利用连接建立阶段消耗服务端资源。" },
+  { "id": "rst-injection-tcp", "source": "rst-injection", "target": "tcp", "relation": "exploits", "label": "伪造控制报文", "description": "RST 注入利用 TCP 对复位报文的处理提前终止连接。" },
   { "id": "wireshark-tcp", "source": "wireshark", "target": "tcp", "relation": "observes", "label": "分析", "description": "Wireshark 可用于观察 TCP 报文和连接状态变化。" }
 ]

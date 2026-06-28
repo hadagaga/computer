@@ -1,0 +1,26 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import PathCard from '../../components/PathCard.astro';
+import paths from '../../data/paths.json';
+---
+
+<StarlightPage frontmatter={{ title: '学习路径库', description: '从真实问题和系统过程出发组织计算机体系知识。' }}>
+	<div class="graph-page path-index-page">
+		<header class="graph-page-header">
+			<div class="graph-kicker">GUIDED LEARNING</div>
+			<p>路径不是课程目录，而是一条可执行的理解路线：先跟随系统主线，再在关键节点进入机制、安全与工具分支。</p>
+		</header>
+		<div class="path-card-grid">
+			{paths.map((path) => (
+				<PathCard
+					title={path.title}
+					goal={path.goal}
+					url={path.url}
+					status={path.status}
+					mainlineCount={path.mainline.length}
+					branchCount={path.branches.length}
+				/>
+			))}
+		</div>
+	</div>
+</StarlightPage>

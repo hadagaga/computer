@@ -1,0 +1,26 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import PathFlow from '../../components/graph/PathFlow';
+import nodes from '../../data/nodes.json';
+import paths from '../../data/paths.json';
+import participation from '../../data/participation.json';
+
+const path = paths.find((item) => item.id === 'tcp-connection');
+if (!path) throw new Error('Missing tcp-connection path data');
+const pathParticipation = participation.filter((item) => item.path === path.id);
+---
+
+<StarlightPage frontmatter={{ title: path.title, description: path.goal }}>
+	<div class="graph-page">
+		<header class="graph-page-header">
+			<div class="graph-kicker">LEARNING PATH · TCP CONNECTION</div>
+			<p>{path.goal}</p>
+		</header>
+		<div class="path-guide">
+			<span><i class="path-line path-line--main"></i>协议栈主线</span>
+			<span><i class="path-line path-line--branch"></i>机制与安全分支</span>
+			<span>点击节点查看它在本路径中的职责</span>
+		</div>
+		<PathFlow path={path} nodeRecords={nodes} participation={pathParticipation} client:only="react" />
+	</div>
+</StarlightPage>

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,28 +17,24 @@ export default defineConfig({
 					items: [{ label: '项目首页', slug: 'index' }],
 				},
 				{
-					label: '第一阶段：TCP 路径',
+					label: '图谱探索',
 					collapsed: false,
 					items: [
-						{ label: 'TCP 节点', slug: 'nodes/tcp' },
-						{ label: '一次 TCP 连接', slug: 'paths/tcp-connection' },
-						{ label: 'TCP 周边知识网', slug: 'graph/tcp' },
+						{ label: '节点知识图', link: '/nodes/' },
+						{ label: '全局知识网', link: '/graph/' },
+						{ label: '路径库', link: '/paths/' },
+						{ label: '一次 TCP 连接', link: '/paths/tcp-connection/' },
 					],
 				},
 				{
-					label: '节点库',
+					label: '节点详情',
 					collapsed: false,
 					items: [
-						{ label: '节点索引', slug: 'nodes' },
+						{ label: 'TCP', slug: 'nodes/tcp' },
 						{ label: 'IP', slug: 'nodes/ip' },
 						{ label: 'Socket', slug: 'nodes/socket' },
 						{ label: 'SYN Flood', slug: 'nodes/syn-flood' },
 					],
-				},
-				{
-					label: '路径树',
-					collapsed: true,
-					items: [{ label: '路径索引', slug: 'paths' }],
 				},
 				{
 					label: '领域',
@@ -50,5 +47,6 @@ export default defineConfig({
 				},
 			],
 		}),
+		react(),
 	],
 });

@@ -1,6 +1,17 @@
 [
-  { "node": "socket", "path": "tcp-connection", "role": "应用入口", "position": "mainline", "description": "应用程序通过 Socket API 发起连接和收发数据。" },
+  { "node": "application", "path": "tcp-connection", "role": "通信发起者", "position": "mainline", "description": "应用程序产生通信需求，并调用 Socket API。" },
+  { "node": "socket", "path": "tcp-connection", "role": "应用入口", "position": "mainline", "description": "Socket API 把连接和收发数据的意图交给操作系统。" },
+  { "node": "system-call", "path": "tcp-connection", "role": "用户态与内核边界", "position": "mainline", "description": "网络系统调用让请求跨越权限边界进入内核协议栈。" },
   { "node": "tcp", "path": "tcp-connection", "role": "核心传输协议", "position": "mainline", "description": "TCP 建立连接并提供可靠、有序的字节流。" },
   { "node": "ip", "path": "tcp-connection", "role": "网络层承载", "position": "mainline", "description": "IP 负责寻址并将 TCP 报文跨网络转发。" },
-  { "node": "syn-flood", "path": "tcp-connection", "role": "安全分支", "position": "branch", "description": "该节点说明连接建立机制如何被拒绝服务攻击利用。" }
+  { "node": "network-card", "path": "tcp-connection", "role": "物理网络接口", "position": "mainline", "description": "网卡在主机与链路之间实际收发数据帧。" },
+  { "node": "server", "path": "tcp-connection", "role": "连接目标", "position": "mainline", "description": "服务端监听端口、接受连接并处理应用数据。" },
+  { "node": "three-way-handshake", "path": "tcp-connection", "role": "连接建立机制", "position": "branch", "description": "双方通过控制报文同步连接状态和初始序列号。" },
+  { "node": "four-way-termination", "path": "tcp-connection", "role": "连接关闭机制", "position": "branch", "description": "双向字节流分别关闭，最终释放连接状态。" },
+  { "node": "retransmission", "path": "tcp-connection", "role": "丢包恢复机制", "position": "branch", "description": "超时或重复确认触发数据重发，维持可靠交付。" },
+  { "node": "sliding-window", "path": "tcp-connection", "role": "流量控制机制", "position": "branch", "description": "窗口限制未确认数据范围，协调发送与接收能力。" },
+  { "node": "congestion-control", "path": "tcp-connection", "role": "网络负载调节", "position": "branch", "description": "发送方根据拥塞信号动态调整发送速率。" },
+  { "node": "syn-flood", "path": "tcp-connection", "role": "连接建立攻击", "position": "branch", "description": "攻击者滥用半连接状态消耗服务端资源。" },
+  { "node": "rst-injection", "path": "tcp-connection", "role": "连接中断攻击", "position": "branch", "description": "伪造复位报文可以让通信双方提前终止连接。" },
+  { "node": "wireshark", "path": "tcp-connection", "role": "观察与验证工具", "position": "branch", "description": "抓取报文以验证握手、传输、重传与关闭过程。" }
 ]

@@ -1,0 +1,26 @@
+---
+interface Props {
+	title: string;
+	goal: string;
+	url: string;
+	status: string;
+	mainlineCount: number;
+	branchCount: number;
+}
+
+const { title, goal, url, status, mainlineCount, branchCount } = Astro.props;
+---
+
+<article class="path-card">
+	<div class="path-card__topline">
+		<span class="path-card__type">学习路径</span>
+		<span class="status-badge status-planned">{status === 'planned' ? '规划中' : status}</span>
+	</div>
+	<h2><a href={url}>{title}</a></h2>
+	<p>{goal}</p>
+	<div class="path-card__meta">
+		<span>{mainlineCount} 个主线节点</span>
+		<span>{branchCount} 条探索分支</span>
+	</div>
+	<a class="path-card__link" href={url}>打开路径图 <span>→</span></a>
+</article>
