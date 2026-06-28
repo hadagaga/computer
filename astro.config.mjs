@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://hada.asia',
+	site: 'https://computer.hada.asia',
 	integrations: [
 		starlight({
 			title: '计算机体系视频百科',
