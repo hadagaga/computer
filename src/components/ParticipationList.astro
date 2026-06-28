@@ -1,0 +1,29 @@
+---
+import participation from '../data/participation.json';
+import paths from '../data/paths.json';
+
+interface Props {
+	nodeId: string;
+}
+
+const { nodeId } = Astro.props;
+const items = participation
+	.filter(({ node }) => node === nodeId)
+	.map((item) => ({ ...item, pathInfo: paths.find(({ id }) => id === item.path) }));
+---
+
+{items.length === 0 ? (
+	<p>当前节点暂未加入任何学习路径。</p>
+) : (
+	<ul class="participation-list not-content">
+		{items.map((item) => (
+			<li>
+				<div class="relation-heading">
+					{item.pathInfo ? <a href={item.pathInfo.url}>{item.pathInfo.title}</a> : <strong>{item.path}</strong>}
+					<span>{item.role}</span>
+				</div>
+				<p>{item.description}</p>
+			</li>
+		))}
+	</ul>
+)}

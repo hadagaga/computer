@@ -1,0 +1,20 @@
+---
+title: TCP 周边知识网
+description: 以 TCP 为中心查看协议、接口、传输机制与安全问题的一跳关系。
+---
+
+import RelatedNodes from '../../../components/RelatedNodes.astro';
+
+第一阶段用结构化关系卡片表达一跳知识网。每条关系来自统一的 `edges.json` 数据，后续可在不改动内容模型的情况下替换成交互图谱。
+
+## 中心节点
+
+**[TCP](/nodes/tcp/)** · 传输层可靠字节流协议
+
+## 一跳关联
+
+<RelatedNodes nodeId="tcp" />
+
+:::tip[如何阅读]
+先沿“依赖”和“使用”关系理解协议栈位置，再沿“可靠性机制”和“利用机制”进入实现与安全分支。
+:::

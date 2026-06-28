@@ -1,0 +1,15 @@
+[
+  {
+    "id": "tcp-connection",
+    "title": "一次 TCP 连接背后发生了什么",
+    "status": "planned",
+    "url": "/paths/tcp-connection/",
+    "goal": "从应用程序的通信需求出发，理解 Socket、TCP 与 IP 如何共同完成一次连接。",
+    "mainline": ["socket", "tcp", "ip"],
+    "branches": [
+      { "from": "tcp", "title": "连接生命周期", "nodes": ["three-way-handshake", "four-way-termination"] },
+      { "from": "tcp", "title": "可靠传输机制", "nodes": ["retransmission", "sliding-window", "congestion-control"] },
+      { "from": "tcp", "title": "安全与观察", "nodes": ["syn-flood", "wireshark"] }
+    ]
+  }
+]

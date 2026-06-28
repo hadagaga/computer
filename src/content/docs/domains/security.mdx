@@ -1,0 +1,28 @@
+---
+title: 网络安全
+description: 从协议机制、攻击方式与防护思路理解网络安全。
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+网络安全不是脱离系统机制的附加主题。攻击通常利用协议状态、资源限制、信任边界或实现缺陷，因此需要先理解正常通信过程。
+
+## 第一阶段入口
+
+<CardGrid>
+	<Card title="SYN Flood" icon="shield">
+		理解 TCP 连接建立机制如何被用于消耗服务端资源。
+		[查看节点 →](/nodes/syn-flood/)
+	</Card>
+	<Card title="TCP 周边知识网" icon="random">
+		从 TCP 横向查看连接机制、可靠传输和安全关系。
+		[查看知识网 →](/graph/tcp/)
+	</Card>
+</CardGrid>
+
+## 后续节点
+
+- TLS 与身份认证
+- HTTPS 与安全通信
+- 流量分析与 Wireshark
+- 拒绝服务防护策略

@@ -1,0 +1,19 @@
+---
+title: 领域索引
+description: 按计算机知识领域查看核心节点与推荐学习路径。
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+领域页提供稳定的高层入口，节点和路径增多后仍可按主题定位内容。
+
+<CardGrid>
+	<Card title="计算机网络" icon="globe">
+		从 Socket、TCP 和 IP 入手，理解应用程序到网络基础设施的通信过程。
+		[进入领域 →](/domains/network/)
+	</Card>
+	<Card title="网络安全" icon="shield">
+		从正常机制如何被滥用出发，连接协议原理、攻击方式和防护思路。
+		[进入领域 →](/domains/security/)
+	</Card>
+</CardGrid>

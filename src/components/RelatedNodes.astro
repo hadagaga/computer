@@ -1,0 +1,33 @@
+---
+import edges from '../data/edges.json';
+import nodes from '../data/nodes.json';
+
+interface Props {
+	nodeId: string;
+}
+
+const { nodeId } = Astro.props;
+const related = edges
+	.filter(({ source, target }) => source === nodeId || target === nodeId)
+	.map((edge) => {
+		const relatedId = edge.source === nodeId ? edge.target : edge.source;
+		return { edge, node: nodes.find(({ id }) => id === relatedId) };
+	})
+	.filter((item) => item.node);
+---
+
+{related.length === 0 ? (
+	<p>当前节点还没有已登记的一跳关系。</p>
+) : (
+	<ul class="relation-list not-content">
+		{related.map(({ edge, node }) => node && (
+			<li class="relation-card">
+				<div class="relation-heading">
+					{node.url ? <a href={node.url}>{node.title}</a> : <strong>{node.title}</strong>}
+					<span>{edge.label}</span>
+				</div>
+				<p>{edge.description}</p>
+			</li>
+		))}
+	</ul>
+)}

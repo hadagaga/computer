@@ -1,0 +1,34 @@
+---
+title: Socket
+description: Socket 是应用程序使用操作系统网络协议栈进行通信的接口与抽象。
+---
+
+import StatusBadge from '../../../components/StatusBadge.astro';
+import RelatedNodes from '../../../components/RelatedNodes.astro';
+import ParticipationList from '../../../components/ParticipationList.astro';
+
+<StatusBadge status="planned" />
+
+Socket 把应用程序的通信需求连接到操作系统网络协议栈。程序通过创建 Socket、选择协议和地址、建立连接以及收发数据，间接使用 TCP、UDP 和 IP 等协议能力。
+
+## 核心问题
+
+1. Socket 是协议、文件描述符，还是编程接口？
+2. 客户端与服务端的 Socket 调用顺序有何不同？
+3. 一次读写调用如何进入操作系统协议栈？
+
+## 所属领域
+
+[计算机网络](/domains/network/) · 网络编程 · 操作系统接口
+
+## 关联节点
+
+<RelatedNodes nodeId="socket" />
+
+## 参与的路径
+
+<ParticipationList nodeId="socket" />
+
+## 视频状态
+
+视频处于规划阶段。

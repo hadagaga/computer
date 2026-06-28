@@ -1,0 +1,12 @@
+[
+  { "id": "tcp-ip", "source": "tcp", "target": "ip", "relation": "depends_on", "label": "依赖", "description": "TCP 通常依赖 IP 将报文发送到目标主机。" },
+  { "id": "socket-tcp", "source": "socket", "target": "tcp", "relation": "uses", "label": "使用", "description": "应用程序可以通过 Socket API 使用 TCP 通信。" },
+  { "id": "http-tcp", "source": "http", "target": "tcp", "relation": "runs_on", "label": "运行在", "description": "HTTP/1.1 和 HTTP/2 通常运行在 TCP 之上。" },
+  { "id": "tcp-handshake", "source": "tcp", "target": "three-way-handshake", "relation": "establishes_with", "label": "建立连接", "description": "TCP 通常通过三次握手建立连接。" },
+  { "id": "tcp-termination", "source": "tcp", "target": "four-way-termination", "relation": "closes_with", "label": "关闭连接", "description": "TCP 的双向连接通常通过四次挥手分别关闭。" },
+  { "id": "tcp-retransmission", "source": "tcp", "target": "retransmission", "relation": "provides", "label": "可靠性机制", "description": "重传帮助 TCP 从丢包中恢复。" },
+  { "id": "tcp-window", "source": "tcp", "target": "sliding-window", "relation": "provides", "label": "流量控制", "description": "滑动窗口协调发送方与接收方的数据处理能力。" },
+  { "id": "tcp-congestion", "source": "tcp", "target": "congestion-control", "relation": "provides", "label": "拥塞控制", "description": "拥塞控制让 TCP 根据网络状态调整发送速率。" },
+  { "id": "syn-flood-tcp", "source": "syn-flood", "target": "tcp", "relation": "exploits", "label": "利用机制", "description": "SYN Flood 利用 TCP 连接建立阶段占用服务端资源。" },
+  { "id": "wireshark-tcp", "source": "wireshark", "target": "tcp", "relation": "observes", "label": "分析", "description": "Wireshark 可用于观察 TCP 报文和连接状态变化。" }
+]

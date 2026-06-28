@@ -1,0 +1,6 @@
+[
+  { "node": "socket", "path": "tcp-connection", "role": "应用入口", "position": "mainline", "description": "应用程序通过 Socket API 发起连接和收发数据。" },
+  { "node": "tcp", "path": "tcp-connection", "role": "核心传输协议", "position": "mainline", "description": "TCP 建立连接并提供可靠、有序的字节流。" },
+  { "node": "ip", "path": "tcp-connection", "role": "网络层承载", "position": "mainline", "description": "IP 负责寻址并将 TCP 报文跨网络转发。" },
+  { "node": "syn-flood", "path": "tcp-connection", "role": "安全分支", "position": "branch", "description": "该节点说明连接建立机制如何被拒绝服务攻击利用。" }
+]

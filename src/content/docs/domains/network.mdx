@@ -1,0 +1,27 @@
+---
+title: 计算机网络
+description: 从 Socket、TCP 和 IP 开始理解计算机网络通信。
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+计算机网络领域关注程序、操作系统、协议和网络设备如何协同传递数据。第一阶段以一次 TCP 连接作为纵向入口。
+
+## 推荐路径
+
+[一次 TCP 连接背后发生了什么 →](/paths/tcp-connection/)
+
+## 核心节点
+
+<CardGrid>
+	<Card title="Socket">应用程序使用网络协议栈的接口。[查看 →](/nodes/socket/)</Card>
+	<Card title="TCP">提供可靠、有序的字节流。[查看 →](/nodes/tcp/)</Card>
+	<Card title="IP">负责网络层寻址与数据报转发。[查看 →](/nodes/ip/)</Card>
+</CardGrid>
+
+## 延伸方向
+
+- 应用层：HTTP、HTTPS
+- 传输机制：重传、滑动窗口、拥塞控制
+- 连接管理：三次握手、四次挥手
+- 分析工具：Wireshark
