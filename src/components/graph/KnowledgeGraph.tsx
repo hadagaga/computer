@@ -24,7 +24,7 @@ type Props = {
 	nodes: NodeRecord[];
 	edges: EdgeRecord[];
 	initialNode?: string;
-	navigateOnClick?: boolean;
+	navigateOnDoubleClick?: boolean;
 };
 
 const domainNames: Record<string, string> = {
@@ -34,10 +34,10 @@ const domainNames: Record<string, string> = {
 	system: '操作系统',
 };
 
-export default function KnowledgeGraph({ nodes, edges, initialNode = 'tcp', navigateOnClick = false }: Props) {
+export default function KnowledgeGraph({ nodes, edges, initialNode, navigateOnDoubleClick = false }: Props) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const graphRef = useRef<Core | null>(null);
-	const [selectedId, setSelectedId] = useState(initialNode);
+	const [selectedId, setSelectedId] = useState(initialNode ?? '');
 	const selected = nodes.find((node) => node.id === selectedId) ?? null;
 	const relationCount = selected
 		? edges.filter((edge) => edge.source === selected.id || edge.target === selected.id).length
@@ -96,12 +96,7 @@ export default function KnowledgeGraph({ nodes, edges, initialNode = 'tcp', navi
 			],
 		});
 
-		const focusNode = (id: string, followLink = false) => {
-			const record = nodes.find((node) => node.id === id);
-			if (followLink && record?.url) {
-				window.location.assign(record.url);
-				return;
-			}
+		const focusNode = (id: string) => {
 			const node = graph.getElementById(id);
 			graph.elements().addClass('is-muted');
 			node.closedNeighborhood().removeClass('is-muted');
@@ -110,7 +105,13 @@ export default function KnowledgeGraph({ nodes, edges, initialNode = 'tcp', navi
 			setSelectedId(id);
 		};
 
-		graph.on('tap', 'node', (event) => focusNode(event.target.id(), navigateOnClick));
+		const openNodeDocument = (id: string) => {
+			const record = nodes.find((node) => node.id === id);
+			if (navigateOnDoubleClick && record?.url) window.location.assign(record.url);
+		};
+
+		graph.on('tap', 'node', (event) => focusNode(event.target.id()));
+		graph.on('dbltap', 'node', (event) => openNodeDocument(event.target.id()));
 		graph.on('tap', (event) => {
 			if (event.target === graph) {
 				graph.elements().removeClass('is-muted is-selected');
@@ -119,19 +120,19 @@ export default function KnowledgeGraph({ nodes, edges, initialNode = 'tcp', navi
 		});
 
 		graphRef.current = graph;
-		focusNode(initialNode);
+		if (initialNode) focusNode(initialNode);
 
 		return () => {
 			graph.destroy();
 			graphRef.current = null;
 		};
-	}, [edges, initialNode, navigateOnClick, nodes]);
+	}, [edges, initialNode, navigateOnDoubleClick, nodes]);
 
 	return (
 		<div className="knowledge-graph-shell">
 			<div className="graph-canvas-wrap">
 				<div className="graph-toolbar">
-					<span>{navigateOnClick ? '拖动画布 · 滚轮缩放 · 点击已有内容的节点进入文档' : '拖动画布 · 滚轮缩放 · 点击节点聚焦一跳关系'}</span>
+					<span>{navigateOnDoubleClick ? '拖动画布 · 滚轮缩放 · 单击选中 · 双击进入文档' : '拖动画布 · 滚轮缩放 · 点击节点聚焦一跳关系'}</span>
 					<button type="button" onClick={() => graphRef.current?.fit(undefined, 36)}>适应画布</button>
 				</div>
 				<div ref={containerRef} className="knowledge-graph-canvas" aria-label="节点知识关系图" />

@@ -31,7 +31,7 @@ import '../../styles/graph-standalone.css';
 			<a class="standalone-docs-link" href="/nodes/">节点文档</a>
 		</header>
 		<main class="standalone-graph-stage">
-			<KnowledgeGraph nodes={nodes} edges={edges} initialNode="tcp" navigateOnClick client:only="react" />
+			<KnowledgeGraph nodes={nodes} edges={edges} navigateOnDoubleClick client:only="react" />
 		</main>
 	</body>
 </html>
