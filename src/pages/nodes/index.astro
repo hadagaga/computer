@@ -1,22 +1,33 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-import KnowledgeGraph from '../../components/graph/KnowledgeGraph';
 import nodes from '../../data/nodes.json';
-import edges from '../../data/edges.json';
+
+const domainNames: Record<string, string> = {
+	application: '应用',
+	network: '计算机网络',
+	security: '网络安全',
+	system: '操作系统',
+};
 ---
 
-<StarlightPage frontmatter={{ title: '节点知识图', description: '在可交互关系图中浏览计算机体系知识节点。' }}>
-	<div class="graph-page">
+<StarlightPage frontmatter={{ title: '节点文档', description: '按领域浏览计算机体系知识节点及其内容状态。' }}>
+	<div class="node-index-page">
 		<header class="graph-page-header">
-			<div class="graph-kicker">KNOWLEDGE GRAPH · {nodes.length} NODES</div>
-			<p>点击任意节点，只保留它与一跳邻居的视觉焦点；从预览卡进入已有的节点详情页。</p>
+			<div class="graph-kicker">NODE DOCUMENTS · {nodes.length} NODES</div>
+			<p>节点页沉淀概念定义、视频进度、直接关系及其参与的学习路径。也可以前往<a href="/graph/">独立知识图</a>从关系网络开始探索。</p>
 		</header>
-		<div class="graph-legend" aria-label="节点领域图例">
-			<span><i class="legend-dot legend-dot--network"></i>计算机网络</span>
-			<span><i class="legend-dot legend-dot--system"></i>操作系统</span>
-			<span><i class="legend-dot legend-dot--application"></i>应用</span>
-			<span><i class="legend-dot legend-dot--security"></i>网络安全</span>
+		<div class="node-index-grid">
+			{nodes.map((node) => (
+				<article class:list={['node-index-card', { 'node-index-card--available': node.url }]}>
+					<div class="node-index-card__meta">
+						<span>{domainNames[node.domain] ?? node.domain}</span>
+						<span>{node.url ? '已有文档' : '规划中'}</span>
+					</div>
+					<h2>{node.url ? <a href={node.url}>{node.title}</a> : node.title}</h2>
+					<p>{node.summary}</p>
+					{node.url && <a class="node-index-card__link" href={node.url}>阅读节点 <span>→</span></a>}
+				</article>
+			))}
 		</div>
-		<KnowledgeGraph nodes={nodes} edges={edges} client:only="react" />
 	</div>
 </StarlightPage>

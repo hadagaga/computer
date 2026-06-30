@@ -5,8 +5,8 @@ template: splash
 hero:
   tagline: 把协议、系统机制与安全问题放回同一张知识图，在路径中理解它们如何协作。
   actions:
-    - text: 打开节点知识图
-      link: /nodes/
+    - text: 打开全局知识图
+      link: /graph/
       icon: right-arrow
     - text: 沿 TCP 路径学习
       link: /paths/tcp-connection/
@@ -19,9 +19,9 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## 从图谱进入知识
 
 <CardGrid stagger>
-	<Card title="节点知识图" icon="random">
-		浏览协议、机制、接口、工具和安全问题之间的直接关系，点击节点查看一跳邻居。
-		[进入节点图 →](/nodes/)
+	<Card title="全局知识图" icon="random">
+		在独立的全屏无向图中浏览协议、机制、接口、工具和安全问题，点击节点进入对应文档。
+		[进入知识图 →](/graph/)
 	</Card>
 	<Card title="路径流程图" icon="seti:tree">
 		沿一次 TCP 连接的主线前进，再从关键节点进入可靠性、生命周期与安全分支。

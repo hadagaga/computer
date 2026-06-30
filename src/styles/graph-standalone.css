@@ -1,0 +1,99 @@
+:root {
+	color-scheme: dark;
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--sl-color-accent: #60a5fa;
+	--sl-color-gray-2: #cbd5e1;
+	--sl-color-gray-3: #94a3b8;
+	--sl-color-gray-5: #334155;
+	--sl-color-gray-6: #1e293b;
+	--sl-color-bg: #020617;
+	--sl-color-bg-nav: #0f172a;
+}
+
+* { box-sizing: border-box; }
+
+body.standalone-graph-page {
+	margin: 0;
+	min-width: 20rem;
+	min-height: 100vh;
+	overflow: hidden;
+	background: #020617;
+	color: #f8fafc;
+}
+
+.standalone-graph-header {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	align-items: center;
+	gap: 1.5rem;
+	height: 5rem;
+	padding: 0 1.25rem;
+	border-bottom: 1px solid #1e293b;
+	background: rgb(2 6 23 / 94%);
+}
+
+.standalone-graph-title {
+	display: flex;
+	align-items: baseline;
+	gap: 0.7rem;
+	min-width: 0;
+}
+
+.standalone-graph-title a {
+	overflow: hidden;
+	color: #94a3b8;
+	font-size: 0.78rem;
+	font-weight: 700;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.standalone-graph-title > span { color: #475569; }
+
+.standalone-graph-title h1 {
+	margin: 0;
+	font-size: 1.15rem;
+	letter-spacing: -0.02em;
+	white-space: nowrap;
+}
+
+.standalone-docs-link {
+	border: 1px solid #475569;
+	border-radius: 0.55rem;
+	padding: 0.45rem 0.75rem;
+	color: #e2e8f0;
+	font-size: 0.78rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.standalone-graph-stage {
+	height: calc(100vh - 5rem);
+}
+
+.standalone-graph-stage .knowledge-graph-shell {
+	height: 100%;
+	min-height: 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.standalone-graph-stage .knowledge-graph-canvas { min-height: 0; }
+
+@media (max-width: 52rem) {
+	body.standalone-graph-page { overflow: auto; }
+
+	.standalone-graph-header {
+		grid-template-columns: minmax(0, 1fr) auto;
+		height: 4.5rem;
+		gap: 0.75rem;
+	}
+
+	.standalone-graph-header .graph-legend { display: none; }
+	.standalone-graph-title > a,
+	.standalone-graph-title > span { display: none; }
+	.standalone-graph-stage { height: calc(100vh - 4.5rem); min-height: 42rem; }
+	.standalone-graph-stage .knowledge-graph-shell { grid-template-rows: minmax(28rem, 1fr) auto; }
+}

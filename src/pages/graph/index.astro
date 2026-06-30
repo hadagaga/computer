@@ -1,16 +1,37 @@
 ---
-import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import KnowledgeGraph from '../../components/graph/KnowledgeGraph';
 import nodes from '../../data/nodes.json';
 import edges from '../../data/edges.json';
+import '../../styles/custom.css';
+import '../../styles/graph-standalone.css';
 ---
 
-<StarlightPage frontmatter={{ title: '全局知识网', description: '从完整图谱观察计算机体系概念之间的连接。' }}>
-	<div class="graph-page">
-		<header class="graph-page-header">
-			<div class="graph-kicker">GLOBAL VIEW · {edges.length} RELATIONS</div>
-			<p>从协议栈主线向机制、工具与安全问题展开。当前内容以 TCP 主题为第一阶段，后续数据会沿相同模型继续扩展。</p>
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="计算机体系视频百科全局知识图" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>全局知识图 | 计算机体系视频百科</title>
+	</head>
+	<body class="standalone-graph-page">
+		<header class="standalone-graph-header">
+			<div class="standalone-graph-title">
+				<a href="/" aria-label="返回计算机体系视频百科首页">计算机体系视频百科</a>
+				<span aria-hidden="true">/</span>
+				<h1>全局知识图</h1>
+			</div>
+			<div class="graph-legend" aria-label="节点领域图例">
+				<span><i class="legend-dot legend-dot--network"></i>计算机网络</span>
+				<span><i class="legend-dot legend-dot--system"></i>操作系统</span>
+				<span><i class="legend-dot legend-dot--application"></i>应用</span>
+				<span><i class="legend-dot legend-dot--security"></i>网络安全</span>
+			</div>
+			<a class="standalone-docs-link" href="/nodes/">节点文档</a>
 		</header>
-		<KnowledgeGraph nodes={nodes} edges={edges} initialNode="tcp" client:only="react" />
-	</div>
-</StarlightPage>
+		<main class="standalone-graph-stage">
+			<KnowledgeGraph nodes={nodes} edges={edges} initialNode="tcp" navigateOnClick client:only="react" />
+		</main>
+	</body>
+</html>

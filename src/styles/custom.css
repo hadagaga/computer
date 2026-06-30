@@ -360,6 +360,61 @@
 .path-card__meta { display: flex; gap: 1.2rem; margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.8rem; }
 .path-card__link { justify-content: flex-start; gap: 0.45rem; width: fit-content; }
 
+.node-index-page {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.node-index-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.9rem;
+}
+
+.node-index-card {
+	display: flex;
+	flex-direction: column;
+	min-height: 13rem;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 0.9rem;
+	padding: 1rem;
+	background: var(--sl-color-bg-nav);
+}
+
+.node-index-card--available {
+	border-color: color-mix(in srgb, var(--sl-color-accent) 45%, var(--sl-color-gray-5));
+}
+
+.node-index-card__meta {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.75rem;
+	color: var(--sl-color-gray-3);
+	font-size: 0.72rem;
+}
+
+.node-index-card h2 {
+	margin: 0.7rem 0 0.45rem;
+	font-size: 1.15rem;
+}
+
+.node-index-card h2 a { text-decoration: none; }
+
+.node-index-card > p {
+	margin: 0;
+	color: var(--sl-color-gray-2);
+	font-size: 0.85rem;
+	line-height: 1.55;
+}
+
+.node-index-card__link {
+	margin-top: auto;
+	padding-top: 0.9rem;
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
 @media (max-width: 56rem) {
 	.knowledge-graph-shell,
 	.path-flow-shell {
@@ -379,4 +434,5 @@
 	.knowledge-graph-canvas { min-height: 28rem; }
 	.path-flow-canvas { height: 34rem; }
 	.path-card__meta { flex-direction: column; gap: 0.25rem; }
+	.node-index-grid { grid-template-columns: 1fr; }
 }

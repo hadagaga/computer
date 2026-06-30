@@ -20,8 +20,8 @@ export default defineConfig({
 					label: '图谱探索',
 					collapsed: false,
 					items: [
-						{ label: '节点知识图', link: '/nodes/' },
-						{ label: '全局知识网', link: '/graph/' },
+						{ label: '全局知识图', link: '/graph/' },
+						{ label: '节点文档', link: '/nodes/' },
 						{ label: '路径库', link: '/paths/' },
 						{ label: '一次 TCP 连接', link: '/paths/tcp-connection/' },
 					],
